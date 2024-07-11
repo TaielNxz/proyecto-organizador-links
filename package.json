@@ -1,0 +1,15 @@
+{
+  "name": "prueba-de-scrapping",
+  "version": "1.0.0",
+  "main": "scrapping.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.45.1"
+  },
+  "description": ""
+}
