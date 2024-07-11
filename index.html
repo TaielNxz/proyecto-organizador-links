@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Licenciatura en Informática</h1>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#inicio">link</a></li>
+                <li class="nav-item"><a href="#acerca">link</a></li>
+                <li class="nav-item"><a href="#servicios">link</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+
+        <!-- Filtro -->
+        <section class="filtros">
+            
+            <label class="filtro" for="nombre">
+                <input id="nombre" type="text">
+            </label>
+
+            <select class="filtro" name="" id="alfabetico">
+                <option value="ascendente">Ascendente</option>
+                <option value="descendente">Descendente</option>
+            </select>
+
+            <div class="filtro-year" id="filtro-year">
+                <label class="select-all" for="select-all">
+                    <input type="checkbox" id="select-all">
+                    Seleccionar todos
+                </label>
+                <label for="año-1">
+                    <input type="checkbox" id="año-1" name="año-1" value="1">
+                    Año 1
+                </label>
+                <label for="año-2">
+                    <input type="checkbox" id="año-2" name="año-2" value="2">
+                    Año 2
+                </label>
+                <label for="año-3">
+                    <input type="checkbox" id="año-3" name="año-3" value="3">
+                    Año 3
+                </label>
+                <label for="año-4">
+                    <input type="checkbox" id="año-4" name="año-4" value="4">
+                    Año 4
+                </label>
+                <label for="año-5">
+                    <input type="checkbox" id="año-5" name="año-5" value="5">
+                    Año 5
+                </label>
+            </div>
+            
+            <!-- <label for="filtro-section-year">
+                <input type="checkbox" id="filtro-section-year" name="filtro year">
+                Mostrar Año
+            </label>
+
+            <label for="filtro-section-semestre">
+                <input type="checkbox" id="filtro-section-semestre" name="filtro year">
+                Mostrar Semestre
+            </label> -->
+
+        </section>
+        <!-- Lista de materias -->
+        <section class="materias">
+        </section>
+        
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
