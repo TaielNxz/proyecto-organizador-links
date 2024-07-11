@@ -9,32 +9,56 @@ const url = 'https://www.info.unlp.edu.ar/licenciatura-en-informatica-plan-2021/
 await page.goto(url);
 
 
-// Recorremos la tabla hasta llegar a los <td> que contienen los años y extraemos los textos
-const years = await page.$$eval('.table-bordered .tabla-titulo-tr td', elements => {
-    return elements.map(element => element.innerText.trim());
+// Selecciona la tabla y revisa cada <tr>
+const data = await page.$$eval('.table-bordered tr', rows => {
+
+    const result = { years: [] , semestres: [] , materias: [] };
+    
+    let yearActual = '';
+    let semestreActual = 'INGRESO';
+
+    rows.forEach( row => {
+
+        // seleccionamos los elementos del html
+        const year = row.querySelector('.tabla-titulo-tr td');
+        const semestre = row.querySelector('.tabla-separador-tr strong');
+        const materia = row.querySelector('a');
+
+        if (year) { 
+            yearActual = year.innerText.trim();
+            result.years.push( year.innerText.trim() )   
+        };
+
+        if (semestre) {
+            semestreActual = semestre.innerText.trim();
+            result.semestres.push( semestre.innerText.trim() );
+        }
+
+        if (materia) {
+
+            // Actualizo los datos de la materia y lo agrego al arreglo
+            const nuevaMateria = {
+                nombre: materia.innerText.trim(),
+                year: yearActual,
+                semestre: semestreActual,
+                github: '',
+                drive: '',
+                notion: ''
+            };
+
+            result.materias.push( nuevaMateria );
+
+        }
+
+    });
+
+    return result;
+
 });
 
 
-// Recorremos la tabla hasta llegar a los <strong> que contienen los semestres y extraemos los textos
-const semestres = await page.$$eval('.table-bordered .tabla-separador-tr strong', elements => {
-    return elements.map(element => element.innerText.trim());
-});
-
-
-// Seleccionar todos los elementos <a> que contienen los nombres de las materias y extraer sus textos
-const materias = await page.$$eval('.table-bordered a', elements => {
-    return elements.map(element => element.innerText.trim());
-});
-
-
-// Excluimos strings vacios del arreglo de materias
-const nombresMaterias = materias.filter( text => {
-    return text.length > 0;
-});
-
-
-console.log(years);
-console.log(semestres);
-console.log(nombresMaterias);
+console.log(data);
 
 await browser.close();
+
+// return { years, semestres, nombresMaterias };
